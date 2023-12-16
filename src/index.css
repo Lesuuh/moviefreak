@@ -6,7 +6,11 @@
 
 
 :root{
+  padding: 0;
+  margin: 0;
   font-family: "poppins", sans-serif;
+  height: 100dvh;
+  background: #0D0C11;
 }
 
 .box-shadow{
@@ -22,3 +26,20 @@
   width: 100%; 
   height: 500px;
 }  */
+
+
+.splide__arrow{
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  color: white;
+}
+
+.splide__arrow--prev {
+  left: 10px; /* Positioning */
+}
+
+/* Style the next arrow */
+.splide__arrow--next {
+  right: 10px; /* Positioning */
+}

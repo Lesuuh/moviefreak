@@ -11,7 +11,7 @@ export const Navbar = () => {
   }
 
   return (
-    <div style={{ backgroundColor: 'transparent' }} className="h-[70px] z-10 bg-black w-full lg:px-36 px-5 gap-5  flex flex-row items-center justify-between relative">
+    <div style={{ backgroundColor: 'transparent' }} className="  max-w-[1500px] mx-auto h-[70px] z-10 bg-black w-full lg:px-36 px-5 gap-5  flex flex-row items-center justify-between relative">
       <div className="logo">
         <h2 className="text-red font-bold">
           Movie<span className="text-white">Freak</span>
