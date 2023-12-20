@@ -43,3 +43,13 @@
 .splide__arrow--next {
   right: 10px; /* Positioning */
 }
+
+select{
+  width: 100px;
+  padding-block: 4px;
+  padding-left: 10px;
+  border:none;
+  outline: none;
+  border-radius: 8px;
+  margin-left: 10px;
+}

@@ -1,23 +1,32 @@
 // import { useEffect, useState } from "react";
 import { RiPlayCircleFill, RiStarSFill } from "react-icons/ri";
-import { Splide,  SplideSlide } from "@splidejs/react-splide";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
+import { useEffect, useState } from "react";
 
-// const StarRating = ({ rating }) => {
-//   const roundedRating = Math.floor(rating);
 
-//   return (
-//     <div className="star-rating">
-//       {Array.from({ length: 5 }, (_, index) => (
-//         <span key={index} className="star">
-//           {index < roundedRating ? "" : "☆"}
-//         </span>
-//       ))}
-//     </div>
-//   );
-// };
+export const Hero = () => {
+  const [popular, setPopular] = useState([]);
 
-export const Hero = ({ popular }) => {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmODQ5NWE4NDBlNGNmOWZhNTQxN2Y2OTE0OWQxOWI1NCIsInN1YiI6IjY1NzYwNDc2NGJmYTU0MDBmZTdlYzk0OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Tn-mplgaCBdxChn8mKdQ-ufW73SMrQL3Qqkq3bUxsz4",
+    },
+  };
+
+  useEffect(() => {
+    fetch(
+      "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => setPopular(response.results))
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <section className="w-full max-w-[1500px] mx-auto  bg-black h-auto lg:h-[100dvh]  relative">
       <Splide
@@ -29,12 +38,12 @@ export const Hero = ({ popular }) => {
           arrows: true,
           autoplay: true,
           interval: "3000",
-          pagination: false
+          pagination: false,
         }}
       >
         {popular.map((pop) => {
           return (
-            <SplideSlide  key={pop.id} className="h-auto">
+            <SplideSlide key={pop.id} className="h-auto">
               <div className="text-white py-5 mt-5">
                 <div
                   className="imge"

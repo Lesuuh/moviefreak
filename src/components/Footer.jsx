@@ -1,4 +1,5 @@
-import { FaYoutube, FaLinkedin, FaXTwitter } from "react-icons/fa";
+import { FaYoutube, FaLinkedin } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export const Footer = () => {
   return (
@@ -13,11 +14,11 @@ export const Footer = () => {
         </p>
 
         <ul>
-          <li>Movies</li>
-          <li>Series</li>
+          <li className="cursor-pointer">Discover</li>
+          <li className="cursor-pointer">Series</li>
         </ul>
 
-        <ul>
+        <ul className="flex flex-col md:flex-row gap-5">
           <li>
             <FaXTwitter />
             Twitter
