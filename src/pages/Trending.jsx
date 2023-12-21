@@ -87,6 +87,11 @@ export const Trending = () => {
                   alt=""
                   className="rounded-xl h-[350px] bg-center object-cover bg-cover"
                 />
+                <div className="absolute rounded-full w-[50px] h-[50px] bg-lightBlack right-2 top-2 flex justify-center items-center">
+                  <p className="text-white bg-red flex justify-center items-center w-[40px] h-[40px] rounded-full">
+                    {trend.vote_average.toFixed(1)}
+                  </p>
+                </div>
                 <h2 className="absolute bottom-[10px] left-[10px]">
                   {type === "tv" ? trend.name : trend.title}
                 </h2>

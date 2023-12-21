@@ -45,11 +45,16 @@
 }
 
 select{
-  width: 100px;
+  width: 150px;
   padding-block: 4px;
-  padding-left: 10px;
+  padding-left: 5px;
+  padding-right: 10px;
   border:none;
   outline: none;
   border-radius: 8px;
   margin-left: 10px;
+}
+
+.bg-image{
+  background: url();
 }

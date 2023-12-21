@@ -77,7 +77,7 @@ export const Upcoming = () => {
                   ></div>
                   <div className="absolute top-2 right-2 w-[50px] h-[50px] bg-lightBlack rounded-full flex justify-center items-center">
                     <p className="bg-red w-[40px] h-[40px] rounded-full flex justify-center items-center ">
-                      {coming.vote_average.toFixed(2)}
+                      {coming.vote_average.toFixed(1)}
                     </p>
                   </div>
                   <h3 className="absolute bottom-1 left-1 px-2 font-bold ">
