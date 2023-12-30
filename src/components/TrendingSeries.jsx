@@ -5,7 +5,7 @@ import { RiPlayFill } from "react-icons/ri";
 
 export const TrendingSeries = () => {
   const [trendingseries, setTrendingseries] = useState([]);
-  console.log(trendingseries);
+  // console.log(trendingseries);
 
   useEffect(() => {
     const options = {

@@ -75,7 +75,7 @@ export const Hero = () => {
                   </h2>
                   <button className="bg-red flex flex-row justify-center items-center box-shadow w-[150px] h-[50px] cursor-pointer text-white py-2 rounded-xl">
                     <RiPlayCircleFill className="text-2xl" />
-                    Watch Now
+                    View Details
                   </button>
                 </div>
               </div>

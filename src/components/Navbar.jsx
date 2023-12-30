@@ -1,14 +1,10 @@
 import { useState } from "react";
-import { RiMenu3Line, RiCloseFill, RiSearch2Line } from "react-icons/ri";
+import { RiMenu3Line, RiCloseFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { Search } from "../pages/Search";
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const [searched, setSearched] = useState("");
-
-  const handleSearchSubmit = () => {
-    console.log(searched);
-  };
 
   return (
     <div
@@ -22,21 +18,8 @@ export const Navbar = () => {
           </h2>
         </Link>
       </div>
-      <div className="relative hidden sm:block">
-        <input
-          type="text"
-          placeholder="Search our movies"
-          className=" rounded-xl px-5 py-1 w-[500px]"
-          value={searched}
-          onChange={(e) => setSearched(e.target.value)}
-        />
-        <button>
-          <RiSearch2Line
-            onClick={() => handleSearchSubmit()}
-            className="text-red text-xl absolute top-[50%] cursor-pointer translate-y-[-50%] mr-2 right-0"
-          />
-        </button>
-      </div>
+
+      <Search />
 
       {open ? (
         <RiCloseFill

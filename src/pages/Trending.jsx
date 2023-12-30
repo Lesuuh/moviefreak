@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Trending = () => {
   const [type, setType] = useState("movie");
@@ -29,11 +30,14 @@ export const Trending = () => {
   return (
     <section className="max-w-[1500px] pt-10 px-5 lg:px-36 text-white">
       <div className="flex flex-row justify-between flex-wrap">
-        <h2 className="text-white text-xl md:text-2xl font-bold">Trending {type === "tv" ? "Series" : "Movies"}</h2>
+        <h2 className="text-white text-xl md:text-2xl font-bold">
+          Trending {type === "tv" ? "Series" : "Movies"}
+        </h2>
         <div className="flex gap-5 items-center flex-wrap">
-        <label htmlFor="filterViews" className="text-sm">Filter by:</label>
+          <label htmlFor="filterViews" className="text-sm">
+            Filter by:
+          </label>
           <div>
-            
             <select
               id="filterViews"
               className="bg-lightBlack"
@@ -48,7 +52,6 @@ export const Trending = () => {
             </select>
           </div>
           <div>
-            
             <select
               id="filterViews"
               className="bg-lightBlack"
@@ -71,31 +74,30 @@ export const Trending = () => {
         >
           {trending.map((trend) => {
             return (
-              <div
-                key={trend.id}
-                className="relative rounded-xl cursor-pointer hover:scale-105 duration-300 ease-in-out"
-              >
-                <div
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.1) 100%)",
-                  }}
-                  className="absolute w-full h-full rounded-xl"
-                ></div>
-                <img
-                  src={`http://image.tmdb.org/t/p/original/${trend.backdrop_path}`}
-                  alt=""
-                  className="rounded-xl h-[350px] bg-center object-cover bg-cover"
-                />
-                <div className="absolute rounded-full w-[50px] h-[50px] bg-lightBlack right-2 top-2 flex justify-center items-center">
-                  <p className="text-white bg-red flex justify-center items-center w-[40px] h-[40px] rounded-full">
-                    {trend.vote_average.toFixed(1)}
-                  </p>
+              <Link key={trend.id} >
+                <div className="relative rounded-xl cursor-pointer hover:scale-105 duration-300 ease-in-out">
+                  <div
+                    style={{
+                      background:
+                        "linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.1) 100%)",
+                    }}
+                    className="absolute w-full h-full rounded-xl"
+                  ></div>
+                  <img
+                    src={`http://image.tmdb.org/t/p/original/${trend.backdrop_path}`}
+                    alt=""
+                    className="rounded-xl h-[350px] bg-center object-cover bg-cover"
+                  />
+                  <div className="absolute rounded-full w-[50px] h-[50px] bg-lightBlack right-2 top-2 flex justify-center items-center">
+                    <p className="text-white bg-red flex justify-center items-center w-[40px] h-[40px] rounded-full">
+                      {trend.vote_average.toFixed(1)}
+                    </p>
+                  </div>
+                  <h2 className="absolute bottom-[10px] left-[10px]">
+                    {type === "tv" ? trend.name : trend.title}
+                  </h2>
                 </div>
-                <h2 className="absolute bottom-[10px] left-[10px]">
-                  {type === "tv" ? trend.name : trend.title}
-                </h2>
-              </div>
+              </Link>
             );
           })}
         </div>

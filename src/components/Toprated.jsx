@@ -69,6 +69,7 @@ export const Toprated = () => {
               <>
                 <SplideSlide key={rated.id} className="relative rounded-xl">
                   <div
+                  key={rated.id}
                     style={{
                       background:
                         "linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.1) 100%)",
