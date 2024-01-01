@@ -2,10 +2,10 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { useEffect, useState } from "react";
 import { RiPlayFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 export const TrendingToday = () => {
   const [trending, setTrending] = useState([]);
-  
 
   useEffect(() => {
     const options = {
@@ -45,18 +45,18 @@ export const TrendingToday = () => {
             pagination: false,
             breakpoints: {
               475: {
-                perPage: 1
+                perPage: 1,
               },
               740: {
-                perPage: 2
+                perPage: 2,
               },
               1000: {
-                perPage: 3
+                perPage: 3,
               },
               1100: {
-                perPage: 4
-              }
-            }
+                perPage: 4,
+              },
+            },
             // autoScroll: {
             //   pauseOnHover: true,
             //   pauseOnFocus: false,
@@ -69,31 +69,33 @@ export const TrendingToday = () => {
             return (
               <>
                 <SplideSlide key={trend.id} className="relative rounded-xl">
-                <div
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.1) 100%)",
-                    width: "100%", // Set the width to 100%
-                    height: "100%", // Set the height to 100%
-                    position: "absolute",
-                    borderRadius: "inherit", // Make sure it matches the parent's border radius
-                  }}
-                ></div>
-                  <div className="absolute top-2 right-2 w-[50px] h-[50px] bg-lightBlack rounded-full flex justify-center items-center">
-                    <p className="bg-red w-[40px] h-[40px] rounded-full flex justify-center items-center ">
-                      {trend.vote_average.toFixed(1)}
-                    </p>
-                  </div>
-                  <h3 className="absolute bottom-1 left-1 px-2 font-bold ">
-                    {trend.title}
-                  </h3>
-                  <div>
-                    <img
-                      src={`http://image.tmdb.org/t/p/original/${trend.poster_path}`}
-                      alt={trend.title}
-                      className=" h-[400px] w-[100%] bg-cover object-cover bg-center rounded-xl"
-                    />
-                  </div>
+                  <Link key={trend.id} to={`/movie/${trend.id}`}>
+                    <div
+                      style={{
+                        background:
+                          "linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.1) 100%)",
+                        width: "100%", // Set the width to 100%
+                        height: "100%", // Set the height to 100%
+                        position: "absolute",
+                        borderRadius: "inherit", // Make sure it matches the parent's border radius
+                      }}
+                    ></div>
+                    <div className="absolute top-2 right-2 w-[50px] h-[50px] bg-lightBlack rounded-full flex justify-center items-center">
+                      <p className="bg-red w-[40px] h-[40px] rounded-full flex justify-center items-center ">
+                        {trend.vote_average.toFixed(1)}
+                      </p>
+                    </div>
+                    <h3 className="absolute bottom-1 left-1 px-2 font-bold ">
+                      {trend.title}
+                    </h3>
+                    <div>
+                      <img
+                        src={`http://image.tmdb.org/t/p/original/${trend.poster_path}`}
+                        alt={trend.title}
+                        className=" h-[400px] w-[100%] bg-cover object-cover bg-center rounded-xl"
+                      />
+                    </div>
+                  </Link>
                 </SplideSlide>
               </>
             );

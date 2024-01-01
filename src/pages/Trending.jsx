@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useLoading from "../components/useLoading";
 
 export const Trending = () => {
   const [type, setType] = useState("movie");
   const [day, setDay] = useState("day");
   const [trending, setTrending] = useState([]);
+  // const { loading, startLoading, stopLoading } = useLoading();
 
   console.log(trending);
 
@@ -74,7 +76,7 @@ export const Trending = () => {
         >
           {trending.map((trend) => {
             return (
-              <Link key={trend.id} >
+              <Link key={trend.id} to={`/movie/${trend.id}`}>
                 <div className="relative rounded-xl cursor-pointer hover:scale-105 duration-300 ease-in-out">
                   <div
                     style={{

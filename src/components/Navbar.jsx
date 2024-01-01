@@ -6,6 +6,10 @@ import { Search } from "../pages/Search";
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
 
+  const removeNavMenu = ()=> {
+    setOpen(false)
+  }
+
   return (
     <div
       style={{ backgroundColor: "transparent" }}
@@ -59,17 +63,17 @@ export const Navbar = () => {
           open ? "right-0" : "right-[100%]"
         }  py-5 h-[100dvh] list-none flex duration-700 flex-col  items-center justify-start text-white gap-5`}
       >
-        <Link to="/">
+        <Link to="/" onClick={()=> removeNavMenu()}>
           <li className="hover:text-red duration-300 hover:scale-110 cursor-pointer">
             Home
           </li>
         </Link>
-        <Link to="/trending">
+        <Link to="/trending" onClick={()=> removeNavMenu()}>
           <li className="hover:text-red duration-300 hover:scale-110 cursor-pointer">
             Trending
           </li>
         </Link>
-        <Link to="/discover">
+        <Link to="/discover" onClick={()=> removeNavMenu()}>
           <li className="hover:text-red duration-300 hover:scale-110 cursor-pointer">
             Discover
           </li>

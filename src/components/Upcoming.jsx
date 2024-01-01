@@ -2,6 +2,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { useEffect, useState } from "react";
 import { RiPlayFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 export const Upcoming = () => {
   const [upcoming, setUpcoming] = useState([]);
@@ -16,10 +17,7 @@ export const Upcoming = () => {
       },
     };
 
-    fetch(
-      "https://api.themoviedb.org/3/movie/upcoming?language=en-US",
-      options
-    )
+    fetch("https://api.themoviedb.org/3/movie/upcoming?language=en-US", options)
       .then((response) => response.json())
       .then((response) => setUpcoming(response.results))
       .catch((err) => console.error(err));
@@ -44,18 +42,18 @@ export const Upcoming = () => {
             pagination: false,
             breakpoints: {
               475: {
-                perPage: 1
+                perPage: 1,
               },
               740: {
-                perPage: 2
+                perPage: 2,
               },
               1000: {
-                perPage: 3
+                perPage: 3,
               },
               1100: {
-                perPage: 4
-              }
-            }
+                perPage: 4,
+              },
+            },
             // autoScroll: {
             //   pauseOnHover: true,
             //   pauseOnFocus: false,
@@ -68,28 +66,30 @@ export const Upcoming = () => {
             return (
               <>
                 <SplideSlide key={coming.id} className="relative rounded-xl">
-                  <div
-                    style={{
-                      background:
-                        "linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.1) 100%)",
-                    }}
-                    className="absolute w-full h-full rounded-xl"
-                  ></div>
-                  <div className="absolute top-2 right-2 w-[50px] h-[50px] bg-lightBlack rounded-full flex justify-center items-center">
-                    <p className="bg-red w-[40px] h-[40px] rounded-full flex justify-center items-center ">
-                      {coming.vote_average.toFixed(1)}
-                    </p>
-                  </div>
-                  <h3 className="absolute bottom-1 left-1 px-2 font-bold ">
-                    {coming.title}
-                  </h3>
-                  <div>
-                    <img
-                      src={`http://image.tmdb.org/t/p/original/${coming.backdrop_path}`}
-                      alt={coming.title}
-                      className=" h-[400px] bg-cover object-cover bg-center rounded-xl"
-                    />
-                  </div>
+                  <Link key={coming.id} to={`/movie/${coming.id}`}>
+                    <div
+                      style={{
+                        background:
+                          "linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.1) 100%)",
+                      }}
+                      className="absolute w-full h-full rounded-xl"
+                    ></div>
+                    <div className="absolute top-2 right-2 w-[50px] h-[50px] bg-lightBlack rounded-full flex justify-center items-center">
+                      <p className="bg-red w-[40px] h-[40px] rounded-full flex justify-center items-center ">
+                        {coming.vote_average.toFixed(1)}
+                      </p>
+                    </div>
+                    <h3 className="absolute bottom-1 left-1 px-2 font-bold ">
+                      {coming.title}
+                    </h3>
+                    <div>
+                      <img
+                        src={`http://image.tmdb.org/t/p/original/${coming.backdrop_path}`}
+                        alt={coming.title}
+                        className=" h-[400px] bg-cover object-cover bg-center rounded-xl"
+                      />
+                    </div>
+                  </Link>
                 </SplideSlide>
               </>
             );

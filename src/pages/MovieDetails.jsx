@@ -4,35 +4,15 @@ import { FaStar } from "react-icons/fa6";
 import { useParams } from "react-router-dom";
 import { Casts } from "../components/Casts";
 import { MovieProp } from "../components/MovieProp";
+import { Similar } from "../components/Similar";
 
 export const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState([]);
   const [cast, setCast] = useState([]);
+  const [similar, setSimilar] = useState([]);
   console.log(cast);
 
   let { id } = useParams();
-
-  const getMovieDetails = async () => {
-    try {
-      const options = {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmODQ5NWE4NDBlNGNmOWZhNTQxN2Y2OTE0OWQxOWI1NCIsInN1YiI6IjY1NzYwNDc2NGJmYTU0MDBmZTdlYzk0OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Tn-mplgaCBdxChn8mKdQ-ufW73SMrQL3Qqkq3bUxsz4",
-        },
-      };
-
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
-        options
-      );
-      const data = await response.json(); // Don't forget to await here
-      setMovieDetails(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   // getting the credits/casts
   useEffect(() => {
@@ -52,11 +32,59 @@ export const MovieDetails = () => {
       .then((response) => response.json())
       .then((response) => setCast(response.cast))
       .catch((err) => console.error(err));
-  }, []);
+  }, [id]);
 
+  // getting the movie details
   useEffect(() => {
+    const getMovieDetails = async () => {
+      try {
+        const options = {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmODQ5NWE4NDBlNGNmOWZhNTQxN2Y2OTE0OWQxOWI1NCIsInN1YiI6IjY1NzYwNDc2NGJmYTU0MDBmZTdlYzk0OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Tn-mplgaCBdxChn8mKdQ-ufW73SMrQL3Qqkq3bUxsz4",
+          },
+        };
+
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
+          options
+        );
+        const data = await response.json(); // Don't forget to await here
+        setMovieDetails(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
     getMovieDetails();
-  }, []); // Include an empty dependency array to run the effect only once
+  }, [id]); // Include an empty dependency array to run the effect only once
+
+  // getting similar movies
+  useEffect(() => {
+    const getSimilarMovies = async () => {
+      try {
+        const options = {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmODQ5NWE4NDBlNGNmOWZhNTQxN2Y2OTE0OWQxOWI1NCIsInN1YiI6IjY1NzYwNDc2NGJmYTU0MDBmZTdlYzk0OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Tn-mplgaCBdxChn8mKdQ-ufW73SMrQL3Qqkq3bUxsz4",
+          },
+        };
+
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`,
+          options
+        );
+        const data = await response.json();
+        setSimilar(data.results);
+      } catch (err) {
+        console.error("Error in fetching data", err);
+      }
+    };
+    getSimilarMovies();
+  }, [id]);
 
   return (
     <div className="max-w-[1500px] relative">
@@ -103,6 +131,9 @@ export const MovieDetails = () => {
       <div className="text-white px-5 lg:px-36 items-start gap-10 flex flex-col-reverse lg:flex-row pt-10">
         <Casts cast={cast} />
         <MovieProp movieDetails={movieDetails} />
+      </div>
+      <div className="px-5 lg:px-36 text-white mt-16 ">
+        <Similar similar={similar} />
       </div>
     </div>
   );

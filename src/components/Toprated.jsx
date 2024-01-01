@@ -2,6 +2,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { useEffect, useState } from "react";
 import { RiPlayFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 export const Toprated = () => {
   const [toprated, setToprated] = useState([]);
@@ -44,18 +45,18 @@ export const Toprated = () => {
             pagination: false,
             breakpoints: {
               475: {
-                perPage: 1
+                perPage: 1,
               },
               740: {
-                perPage: 2
+                perPage: 2,
               },
               1000: {
-                perPage: 3
+                perPage: 3,
               },
               1100: {
-                perPage: 4
-              }
-            }
+                perPage: 4,
+              },
+            },
             // autoScroll: {
             //   pauseOnHover: true,
             //   pauseOnFocus: false,
@@ -68,29 +69,31 @@ export const Toprated = () => {
             return (
               <>
                 <SplideSlide key={rated.id} className="relative rounded-xl">
-                  <div
-                  key={rated.id}
-                    style={{
-                      background:
-                        "linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.1) 100%)",
-                    }}
-                    className="absolute w-full h-full rounded-xl"
-                  ></div>
-                  <div className="absolute top-2 right-2 w-[50px] h-[50px] bg-lightBlack rounded-full flex justify-center items-center">
-                    <p className="bg-red w-[40px] h-[40px] rounded-full flex justify-center items-center ">
-                      {rated.vote_average.toFixed(1)}
-                    </p>
-                  </div>
-                  <h3 className="absolute bottom-1 left-1 px-2 font-bold ">
-                    {rated.title}
-                  </h3>
-                  <div>
-                    <img
-                      src={`http://image.tmdb.org/t/p/original/${rated.backdrop_path}`}
-                      alt={rated.title}
-                      className=" h-[400px] bg-cover object-cover bg-center rounded-xl"
-                    />
-                  </div>
+                  <Link key={rated.id} to={`/movie/${rated.id}`}>
+                    <div
+                      key={rated.id}
+                      style={{
+                        background:
+                          "linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.1) 100%)",
+                      }}
+                      className="absolute w-full h-full rounded-xl"
+                    ></div>
+                    <div className="absolute top-2 right-2 w-[50px] h-[50px] bg-lightBlack rounded-full flex justify-center items-center">
+                      <p className="bg-red w-[40px] h-[40px] rounded-full flex justify-center items-center ">
+                        {rated.vote_average.toFixed(1)}
+                      </p>
+                    </div>
+                    <h3 className="absolute bottom-1 left-1 px-2 font-bold ">
+                      {rated.title}
+                    </h3>
+                    <div>
+                      <img
+                        src={`http://image.tmdb.org/t/p/original/${rated.backdrop_path}`}
+                        alt={rated.title}
+                        className=" h-[400px] bg-cover object-cover bg-center rounded-xl"
+                      />
+                    </div>
+                  </Link>
                 </SplideSlide>
               </>
             );

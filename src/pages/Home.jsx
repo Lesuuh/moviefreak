@@ -1,3 +1,4 @@
+import { Footer } from "../components/Footer";
 import { Hero } from "../components/Hero";
 import { Toprated } from "../components/Toprated";
 import { TrendingSeries } from "../components/TrendingSeries";
@@ -13,6 +14,7 @@ export const Home = () => {
       <Upcoming />
       <Toprated />
       <TrendingSeries />
+      <Footer />
     </div>
   );
 };
